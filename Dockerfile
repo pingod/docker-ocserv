@@ -59,14 +59,14 @@ RUN set -x \
 	&& sed -i 's/^no-route/#no-route/' /etc/ocserv/ocserv.conf \
 	&& sed -i '/\[vhost:www.example.com\]/,$d' /etc/ocserv/ocserv.conf \
 	&& mkdir -p /etc/ocserv/config-per-group \
-	&& cat /tmp/groupinfo.txt >> /etc/ocserv/ocserv.conf \
-	&& rm -fr /tmp/cn-no-route.txt \
-	&& rm -fr /tmp/groupinfo.txt
+	&& cat /tmp/groupinfo.txt >> /etc/ocserv/ocserv.conf
 
 WORKDIR /etc/ocserv
 
-COPY All /etc/ocserv/config-per-group/All
-COPY cn-no-route.txt /etc/ocserv/config-per-group/Route
+
+COPY config-per-group /etc/ocserv/config-per-group
+#COPY All /etc/ocserv/config-per-group/All
+#COPY cn-no-route.txt /etc/ocserv/config-per-group/Route
 
 COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
