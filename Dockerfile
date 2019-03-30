@@ -47,7 +47,7 @@ RUN buildDeps=" \
 	&& rm -rf /var/cache/apk/*
 
 # Setup config
-COPY groupinfo.txt /tmp/
+COPY add-config.txt /tmp/
 RUN set -x \
 	&& sed -i 's/\.\/sample\.passwd/\/etc\/ocserv\/ocpasswd/' /etc/ocserv/ocserv.conf \
 	&& sed -i 's/\(max-same-clients = \)2/\110/' /etc/ocserv/ocserv.conf \
@@ -59,7 +59,7 @@ RUN set -x \
 	&& sed -i 's/^no-route/#no-route/' /etc/ocserv/ocserv.conf \
 	&& sed -i '/\[vhost:www.example.com\]/,$d' /etc/ocserv/ocserv.conf \
 	&& mkdir -p /etc/ocserv/config-per-group \
-	&& cat /tmp/groupinfo.txt >> /etc/ocserv/ocserv.conf
+	&& cat /tmp/add-config.txt >> /etc/ocserv/ocserv.conf
 
 WORKDIR /etc/ocserv
 

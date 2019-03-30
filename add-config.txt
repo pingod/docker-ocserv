@@ -1,3 +1,6 @@
+dns = 10.96.0.2
+dns = 10.252.97.139
+
 default-select-group = Route-BOE[BOE-Route-v1]
 select-group = No-Route-CN[国内网络走本地]
 select-group = No-Route-All[除了本地均走Ocserv]
